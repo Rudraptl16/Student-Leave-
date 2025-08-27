@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Leave Application System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-graduation-cap"></i> LeaveApp</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#apply" class="nav-link">Apply Leave</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#status" class="nav-link">Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#login" class="nav-link login-btn">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="login" class="login-section">
+        <div class="login-container">
+            <div class="login-card">
+                <h2>Student Login</h2>
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter your student ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p class="login-help">Forgot password? <a href="#">Reset here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard-section hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Student Dashboard</h1>
+                <p>Welcome back, <span class="student-name">Rudra Patel</span></p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Approved Leaves</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Pending Requests</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1</h3>
+                        <p>Rejected Leaves</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <p>Total Leaves</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apply Leave Section -->
+    <section id="apply" class="apply-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Apply for Leave</h2>
+                <p>Fill out the form below to request leave</p>
+            </div>
+            
+            <form class="leave-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leaveType">Leave Type</label>
+                        <select id="leaveType" required>
+                            <option value="">Select Leave Type</option>
+                            <option value="sick">Sick Leave</option>
+                            <option value="personal">Personal Leave</option>
+                            <option value="emergency">Emergency Leave</option>
+                            <option value="academic">Academic Leave</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fromDate">From Date</label>
+                        <input type="date" id="fromDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toDate">To Date</label>
+                        <input type="date" id="toDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason">Reason for Leave</label>
+                    <textarea id="reason" rows="4" placeholder="Please provide a detailed reason for your leave request..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="attachment">Attachment (if any)</label>
+                    <input type="file" id="attachment">
+                </div>
+                
+                <button type="submit" class="btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Status Section -->
+    <section id="status" class="status-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Leave Status</h2>
+                <p>Track your leave applications</p>
+            </div>
+            
+            <div class="status-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="approved">Approved</button>
+                <button class="filter-btn" data-filter="rejected">Rejected</button>
+            </div>
+            
+            <div class="leave-list">
+                <div class="leave-item approved">
+                    <div class="leave-info">
+                        <h4>Sick Leave</h4>
+                        <p>Jan 15, 2024 - Jan 17, 2024</p>
+                        <span class="status-badge approved">Approved</span>
+                    </div>
+                    <div class="leave-details">
+                        <p>Medical appointment and recovery</p>
+                    </div>
+                </div>
+                
+                <div class="leave-item pending">
+                    <div class="leave-info">
+                        <h4>Personal Leave</h4>
+                        <p>Feb 20, 2024 - Feb 22, 2024</p>
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                    <div class="leave-details">
+                        <p>Family event attendance</p>
+                    </div>
+                </div>
+                
+                <div class="leave-item rejected">
+                    <div class="leave-info">
+                        <h4>Emergency Leave</h4>
+                        <p>Mar 5, 2024 - Mar 6, 2024</p>
+                        <span class="status-badge rejected">Rejected</span>
+                    </div>
+                    <div class="leave-details">
+                        <p>Urgent family matter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
