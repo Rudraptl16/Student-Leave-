@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Leave Application System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile-form-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/img/Logo.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-graduation-cap"></i> LeaveApp</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#apply" class="nav-link">Apply Leave</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#status" class="nav-link">Status</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profile" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#attendance" class="nav-link">Attendance</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#discipline" class="nav-link">Discipline</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#login" class="nav-link login-btn">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="login" class="login-section">
+        <div class="login-container">
+            <div class="login-card">
+                <h2>Student Login</h2>
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter your student ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p class="login-help">Forgot password? <a href="#" id="forgotPasswordLink">Reset here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email</label>
+                    <input type="email" id="resetEmail" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="btn-primary">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard-section hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Student Dashboard</h1>
+                <p>Welcome back, <span class="student-name">Rudra Patel</span></p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Approved Leaves</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Pending Requests</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1</h3>
+                        <p>Rejected Leaves</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <p>Total Leaves</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apply Leave Section -->
+    <section id="apply" class="apply-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Apply for Leave</h2>
+                <p>Fill out the form below to request leave</p>
+            </div>
+            
+            <form class="leave-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leaveType">Leave Type</label>
+                        <select id="leaveType" required>
+                            <option value="">Select Leave Type</option>
+                            <option value="sick">Sick Leave</option>
+                            <option value="personal">Personal Leave</option>
+                            <option value="emergency">Emergency Leave</option>
+                            <option value="academic">Academic Leave</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fromDate">From Date</label>
+                        <input type="date" id="fromDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toDate">To Date</label>
+                        <input type="date" id="toDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason">Reason for Leave</label>
+                    <textarea id="reason" rows="4" placeholder="Please provide a detailed reason for your leave request..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="attachment">Attachment (if any)</label>
+                    <input type="file" id="attachment">
+                </div>
+                
+                <button type="submit" class="btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Status Section -->
+    <section id="status" class="status-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Leave Status</h2>
+                <p>Track your leave applications</p>
+            </div>
+            
+            <div class="status-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="approved">Approved</button>
+                <button class="filter-btn" data-filter="rejected">Rejected</button>
+            </div>
+            
+            <div class="leave-list">
+                <div class="leave-item approved">
+                    <div class="leave-info">
+                        <h4>Sick Leave</h4>
+                        <p>Jan 15, 2024 - Jan 17, 2024</p>
+                        <span class="status-badge approved">Approved</span>
+                    </div>
+                    <div class="leave-details">
+                        <p>Medical appointment and recovery</p>
+                    </div>
+                </div>
+                
+                <div class="leave-item pending">
+                    <div class="leave-info">
+                        <h4>Personal Leave</h4>
+                        <p>Feb 20, 2024 - Feb 22, 2024</p>
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                    <div class="leave-details">
+                        <p>Family event attendance</p>
+                    </div>
+                </div>
+                
+                <div class="leave-item rejected">
+                    <div class="leave-info">
+                        <h4>Emergency Leave</h4>
+                        <p>Mar 5, 2024 - Mar 6, 2024</p>
+                        <span class="status-badge rejected">Rejected</span>
+                    </div>
+                    <div class="leave-details">
+                        <p>Urgent family matter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Profile Section -->
+    <section id="profile" class="profile-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Student Profile</h2>
+                <p>Manage your personal and academic information</p>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-main-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar-container">
+                            <div class="profile-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-6.627 0-12 5.373-12 12h24c0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E" 
+                                     alt="Profile Avatar" id="profileAvatar" class="profile-avatar-img">
+                                <div class="avatar-overlay">
+                                    <i class="fas fa-camera"></i>
+                                    <input type="file" id="avatarUpload" accept="image/*" class="avatar-upload-input" title="Upload profile picture" aria-label="Profile picture upload">
+                                </div>
+                            </div>
+                            <div class="avatar-actions">
+                                <button class="avatar-upload-btn" onclick="document.getElementById('avatarUpload').click()">
+                                    <i class="fas fa-upload"></i> Upload Photo
+                                </button>
+                                <button class="avatar-remove-btn" id="removeAvatarBtn">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                        <div class="profile-basic-info">
+                            <form id="profileForm">
+                                <h3>Rudra Patel</h3>
+                                <p>
+                                    Student ID:
+                                    <span id="studentId">STU2024001</span>
+                                </p>
+                                <p>
+                                    Department:
+                                    <span id="department">Computer Science</span>
+                                </p>
+                                <div class="profile-status">
+                                    <span class="status-badge active">Active Student</span>
+                                    <span class="status-badge verified">Verified</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-tabs">
+                        <button class="tab-btn active" data-tab="personal">Personal Info</button>
+                        <button class="tab-btn" data-tab="academic">Academic Info</button>
+                        <button class="tab-btn" data-tab="contact">Contact Details</button>
+                        <button class="tab-btn" data-tab="emergency">Emergency Contact</button>
+                        <button class="tab-btn" data-tab="skills">Skills</button>
+                        <button class="tab-btn" data-tab="social">Social Media</button>
+                    </div>
+                
+                    
+                    <div class="tab-content">
+                        <!-- Personal Information Tab -->
+                        <div class="tab-pane active" id="personal-tab">
+                            <div class="detail-grid">
+                                <div class="detail-group">
+                                    <h4>Basic Information</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Full Name:</span>
+                                        <span class="detail-value">Rudra Patel</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Date of Birth:</span>
+                                        <span class="detail-value">January 15, 2002</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Gender:</span>
+                                        <span class="detail-value">Male</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Nationality:</span>
+                                        <span class="detail-value">Indian</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Identification</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Aadhaar Number:</span>
+                                        <span class="detail-value">XXXX-XXXX-XXXX</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">PAN Number:</span>
+                                        <span class="detail-value">ABCDE1234F</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Academic Information Tab -->
+                        <div class="tab-pane" id="academic-tab">
+                            <div class="detail-grid">
+                                <div class="detail-group">
+                                    <h4>Current Academic Status</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Program:</span>
+                                        <span class="detail-value">Bachelor of Technology</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Branch:</span>
+                                        <span class="detail-value">Computer Science & Engineering</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Semester:</span>
+                                        <span class="detail-value">4th Semester</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Roll Number:</span>
+                                        <span class="detail-value">CS2023015</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Student ID:</span>
+                                        <span class="detail-value">STU001234</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Batch:</span>
+                                        <span class="detail-value">2023-2027</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Academic Performance</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">CGPA:</span>
+                                        <span class="detail-value">3.8/4.0</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Current Semester GPA:</span>
+                                        <span class="detail-value">3.9/4.0</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Attendance Percentage:</span>
+                                        <span class="detail-value">92%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Enrollment Date:</span>
+                                        <span class="detail-value">September 1, 2023</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Expected Graduation:</span>
+                                        <span class="detail-value">May 30, 2027</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Credits Completed:</span>
+                                        <span class="detail-value">64/180</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Academic Details</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Faculty Advisor:</span>
+                                        <span class="detail-value">Dr. Sarah Johnson</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Department:</span>
+                                        <span class="detail-value">Computer Science Department</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">College:</span>
+                                        <span class="detail-value">Tech University</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">University:</span>
+                                        <span class="detail-value">State Technical University</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Details Tab -->
+                        <div class="tab-pane" id="contact-tab">
+                            <div class="detail-grid">
+                                <div class="detail-group">
+                                    <h4>Personal Contact Information</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Email:</span>
+                                        <span class="detail-value">rudra.patel@example.com</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Phone:</span>
+                                        <span class="detail-value">+1 234-567-8901</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Alternate Phone:</span>
+                                        <span class="detail-value">+1 987-654-3210</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">WhatsApp:</span>
+                                        <span class="detail-value">+1 234-567-8901</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Permanent Address</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Address:</span>
+                                        <span class="detail-value">123 College Street, Tech City</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">City:</span>
+                                        <span class="detail-value">Mumbai</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">State:</span>
+                                        <span class="detail-value">Maharashtra</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">PIN Code:</span>
+                                        <span class="detail-value">400001</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Country:</span>
+                                        <span class="detail-value">India</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Current Address</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Hostel:</span>
+                                        <span class="detail-value">Boys Hostel - Block B</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Room Number:</span>
+                                        <span class="detail-value">B-205</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Campus Address:</span>
+                                        <span class="detail-value">Tech University Campus, Mumbai</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Emergency Contact Tab -->
+                        <div class="tab-pane" id="emergency-tab">
+                            <div class="detail-grid">
+                                <div class="detail-group">
+                                    <h4>Primary Emergency Contact</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Name:</span>
+                                        <span class="detail-value">Rajesh Patel</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Relationship:</span>
+                                        <span class="detail-value">Father</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Phone:</span>
+                                        <span class="detail-value">+1 555-0123-4567</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Alternate Phone:</span>
+                                        <span class="detail-value">+1 555-0123-4568</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Email:</span>
+                                        <span class="detail-value">rajesh.patel@example.com</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Address:</span>
+                                        <span class="detail-value">123 College Street, Tech City, Mumbai</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Secondary Emergency Contact</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Name:</span>
+                                        <span class="detail-value">Priya Patel</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Relationship:</span>
+                                        <span class="detail-value">Mother</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Phone:</span>
+                                        <span class="detail-value">+1 555-0987-6543</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Alternate Phone:</span>
+                                        <span class="detail-value">+1 555-0987-6544</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Email:</span>
+                                        <span class="detail-value">priya.patel@example.com</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Address:</span>
+                                        <span class="detail-value">123 College Street, Tech City, Mumbai</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Emergency Contact Preferences</h4>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Primary Contact Method:</span>
+                                        <span class="detail-value">Phone Call</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Secondary Contact Method:</span>
+                                        <span class="detail-value">WhatsApp Message</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Emergency Access Level:</span>
+                                        <span class="detail-value">Full Access</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Last Updated:</span>
+                                        <span class="detail-value">March 15, 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skills Tab -->
+                        <div class="tab-pane" id="skills-tab">
+                            <div class="detail-grid">
+                                <div class="detail-group">
+                                    <h4>Technical Skills</h4>
+                                    <div class="skills-container">
+                                        <div class="skill-item">
+                                            <span class="skill-name">JavaScript</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span class="skill-percentage">85%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Python</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 78%"></div>
+                                            </div>
+                                            <span class="skill-percentage">78%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">React</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 82%"></div>
+                                            </div>
+                                            <span class="skill-percentage">82%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Node.js</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 75%"></div>
+                                            </div>
+                                            <span class="skill-percentage">75%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">HTML/CSS</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 90%"></div>
+                                            </div>
+                                            <span class="skill-percentage">90%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Soft Skills</h4>
+                                    <div class="skills-container">
+                                        <div class="skill-item">
+                                            <span class="skill-name">Communication</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 88%"></div>
+                                            </div>
+                                            <span class="skill-percentage">88%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Teamwork</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span class="skill-percentage">85%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Problem Solving</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 92%"></div>
+                                            </div>
+                                            <span class="skill-percentage">92%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Time Management</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 80%"></div>
+                                            </div>
+                                            <span class="skill-percentage">80%</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Leadership</span>
+                                            <div class="skill-progress">
+                                                <div class="skill-progress-bar" style="width: 75%"></div>
+                                            </div>
+                                            <span class="skill-percentage">75%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Certifications & Achievements</h4>
+                                    <div class="certifications-list">
+                                        <div class="certification-item">
+                                            <i class="fas fa-certificate"></i>
+                                            <span>Google Cloud Certified - Associate Cloud Engineer</span>
+                                        </div>
+                                        <div class="certification-item">
+                                            <i class="fas fa-certificate"></i>
+                                            <span>AWS Certified Solutions Architect - Associate</span>
+                                        </div>
+                                        <div class="certification-item">
+                                            <i class="fas fa-trophy"></i>
+                                            <span>Hackathon Winner - Tech Innovation Challenge 2023</span>
+                                        </div>
+                                        <div class="certification-item">
+                                            <i class="fas fa-certificate"></i>
+                                            <span>Microsoft Azure Fundamentals</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media Tab -->
+                        <div class="tab-pane" id="social-tab">
+                            <div class="detail-grid">
+                                <div class="detail-group">
+                                    <h4>Social Media Profiles</h4>
+                                    <div class="social-profiles">
+                                        <div class="social-profile-item">
+                                            <i class="fab fa-linkedin"></i>
+                                            <span>LinkedIn: linkedin.com/in/rudrapatel</span>
+                                            <button class="btn-small">Connect</button>
+                                        </div>
+                                        <div class="social-profile-item">
+                                            <i class="fab fa-github"></i>
+                                            <span>GitHub: github.com/rudrapatel</span>
+                                            <button class="btn-small">Follow</button>
+                                        </div>
+                                        <div class="social-profile-item">
+                                            <i class="fab fa-twitter"></i>
+                                            <span>Twitter: @rudra_patel</span>
+                                            <button class="btn-small">Follow</button>
+                                        </div>
+                                        <div class="social-profile-item">
+                                            <i class="fab fa-instagram"></i>
+                                            <span>Instagram: @rudra.patel</span>
+                                            <button class="btn-small">Follow</button>
+                                        </div>
+                                        <div class="social-profile-item">
+                                            <i class="fab fa-facebook"></i>
+                                            <span>Facebook: Rudra Patel</span>
+                                            <button class="btn-small">Connect</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Professional Networks</h4>
+                                    <div class="networks-list">
+                                        <div class="network-item">
+                                            <i class="fas fa-globe"></i>
+                                            <span>Personal Website: rudrapatel.dev</span>
+                                        </div>
+                                        <div class="network-item">
+                                            <i class="fas fa-briefcase"></i>
+                                            <span>Portfolio: portfolio.rudrapatel.dev</span>
+                                        </div>
+                                        <div class="network-item">
+                                            <i class="fas fa-book"></i>
+                                            <span>Blog: blog.rudrapatel.dev</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-group">
+                                    <h4>Social Media Preferences</h4>
+                                    <div class="social-preferences">
+                                        <div class="preference-item">
+                                            <span>Primary Contact Platform:</span>
+                                            <span>LinkedIn</span>
+                                        </div>
+                                        <div class="preference-item">
+                                            <span>Professional Updates:</span>
+                                            <span>GitHub & LinkedIn</span>
+                                        </div>
+                                        <div class="preference-item">
+                                            <span>Personal Updates:</span>
+                                            <span>Instagram</span>
+                                        </div>
+                                        <div class="preference-item">
+                                            <span>Networking Events:</span>
+                                            <span>Meetup & Eventbrite</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="btn-primary edit-profile-btn">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button class="btn-secondary download-profile-btn">
+                            <i class="fas fa-download"></i> Download Profile
+                        </button>
+                        <button class="btn-tertiary print-profile-btn">
+                            <i class="fas fa-print"></i> Print Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats Card -->
+                <div class="profile-stats-card">
+                    <h4>Quick Stats</h4>
+                    <div class="stats-mini">
+                        <div class="stat-mini">
+                            <div class="stat-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h5>12</h5>
+                                <p>Courses</p>
+                            </div>
+                        </div>
+                        <div class="stat-mini">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h5>3</h5>
+                                <p>Achievements</p>
+                            </div>
+                        </div>
+                        <div class="stat-mini">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h5>5</h5>
+                                <p>Certificates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Attendance Section -->
+    <section id="attendance" class="attendance-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Attendance Records</h2>
+                <p>View your attendance history</p>
+            </div>
+            
+            <div class="attendance-filters">
+                <div class="filter-group">
+                    <label for="monthFilter">Month:</label>
+                    <select id="monthFilter">
+                        <option value="all">All Months</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="subjectFilter">Subject:</label>
+                    <select id="subjectFilter">
+                        <option value="all">All Subjects</option>
+                        <option value="math">Mathematics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="programming">Programming</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="attendance-stats">
+                <div class="attendance-stat">
+                    <h4>Overall Attendance</h4>
+                    <div class="attendance-percentage">92%</div>
+                    <p>Present: 46/50 days</p>
+                </div>
+            </div>
+            
+            <div class="attendance-table-container">
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mar 15, 2024</td>
+                            <td>Mathematics</td>
+                            <td><span class="status-present">Present</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Mar 14, 2024</td>
+                            <td>Physics</td>
+                            <td><span class="status-present">Present</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Mar 13, 2024</td>
+                            <td>Programming</td>
+                            <td><span class="status-absent">Absent</span></td>
+                            <td>Medical Leave</td>
+                        </tr>
+                        <tr>
+                            <td>Mar 12, 2024</td>
+                            <td>Chemistry</td>
+                            <td><span class="status-present">Present</span></td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Discipline Section -->
+    <section id="discipline" class="discipline-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Discipline Records</h2>
+                <p>Manage disciplinary actions and records</p>
+            </div>
+            
+            <div class="discipline-stats">
+                <div class="discipline-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Active Warnings</p>
+                    </div>
+                </div>
+                
+                <div class="discipline-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Resolved Issues</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="discipline-records">
+                <div class="discipline-card warning">
+                    <div class="discipline-header">
+                        <h4>Late Submission Warning</h4>
+                        <span class="discipline-date">Mar 10, 2024</span>
+                    </div>
+                    <div class="discipline-details">
+                        <p><strong>Reason:</strong> Multiple assignment submissions after deadline</p>
+                        <p><strong>Status:</strong> <span class="status-warning">Active Warning</span></p>
+                        <p><strong>Action Required:</strong> Meet with academic advisor</p>
+                    </div>
+                </div>
+                
+                <div class="discipline-card resolved">
+                    <div class="discipline-header">
+                        <h4>Classroom Behavior</h4>
+                        <span class="discipline-date">Feb 15, 2024</span>
+                    </div>
+                    <div class="discipline-details">
+                        <p><strong>Reason:</strong> Disruptive behavior in class</p>
+                        <p><strong>Status:</strong> <span class="status-resolved">Resolved</span></p>
+                        <p><strong>Resolution:</strong> Counseling completed</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="discipline-actions">
+                <button class="btn-primary report-issue-btn">Report New Issue</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
